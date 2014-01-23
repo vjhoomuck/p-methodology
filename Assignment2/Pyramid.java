@@ -26,7 +26,32 @@ public class Pyramid extends GraphicsProgram {
 	private static final int BRICKS_IN_BASE = 14;
 	
 	public void run() {
-		/* You fill this in. */
+		
+		//Get x-coordinate of midpoint
+		double widthWindow = getWidth();
+		
+		//Get y-coordinate of midpoint
+		double heightWindow = getHeight();
+		
+	
+		//Build the next bottom row of pyramid centered
+		//Next row reduces each time by one and its height changes by the height width
+		for (int nextRow = BRICKS_IN_BASE; nextRow > 0; nextRow--) {
+			
+			//Get x-coordinate of brick in bottom row aligned to the left
+			double xStartRow = (widthWindow - (BRICK_WIDTH * nextRow))/2;
+			
+			//Get y-coordinate of brick in bottom row aligned to the left
+			double yStartRow = heightWindow - (BRICK_HEIGHT * (BRICKS_IN_BASE - nextRow));
+			
+			//Build bottom row of pyramid centered
+			//Bottom row has 14 bricks
+			for (int start = 0; start < nextRow; start++) {
+				GRect brickRow = new GRect ((xStartRow + (start * BRICK_WIDTH)), yStartRow, BRICK_WIDTH, BRICK_HEIGHT);
+				add (brickRow);
+			}
+			
+		}
 	}
 }
 
